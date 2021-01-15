@@ -1,0 +1,51 @@
+{
+	"name": "bcompare",
+	"displayName": "bcompare",
+	"description": "compare two files",
+	"publisher": "liuguocheng",
+	"version": "0.0.1",
+	"repository": "https://github.com/liugc/vscode-bcompare",
+	"engines": {
+		"vscode": "^1.32.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.bcompare"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"commands": [{
+      "command": "extension.bcompare",
+			"title": "bcompare"
+		}],
+		"configuration": {
+			"title": "bcompare",
+			"properties": {
+				"bcompare.path": {
+					"type": "string",
+					"default": "bcompare",
+					"description": "bcompare path"
+				}
+			}
+		},
+		"keybindings": [{
+			"command": "extension.bcompare",
+			"key": "alt+=",
+			"mac": "alt+=",
+			"when": "editorTextFocus"
+		}]
+	},
+	"scripts": {
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^3.1.4",
+		"vscode": "^1.1.25",
+		"eslint": "^4.11.0",
+		"@types/node": "^8.10.25",
+		"@types/mocha": "^2.2.42"
+	}
+}
