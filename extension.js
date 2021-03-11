@@ -29,9 +29,9 @@ function activate(context) {
 		let editors = [];
 		visibleTextEditors.forEach((editor) => {
 			if (editor._viewColumn == 1) {
-				editors[0] = editor._documentData._uri.fsPath;
+				editors[0] = editor.document.uri.path;
 			} else {
-				editors[1] = editor._documentData._uri.fsPath;
+				editors[1] = editor.document.uri.path;
 			}
 		});
 		if (editors.length === 2) {
