@@ -22,20 +22,17 @@ function activate(context) {
 		// The code you place here will be executed every time your command is executed
 
 		let bcompare = vscode.workspace.getConfiguration('bcompare');
-		let path = "\"" + bcompare.path + "\"";
-		path = path.replace(/'/g, "\"");
-		path = path.replace(/""/g, "\"");
+		let bin = "\"" + bcompare.path + "\"";
+		bin = bin.replace(/'/g, "\"").replace(/""/g, "\"").replace("$1", "").replace("$2", "").replace(/\s/g, "");
 		let visibleTextEditors = vscode.window.visibleTextEditors;
 		let editors = [];
 		visibleTextEditors.forEach((editor) => {
-			if (editor._viewColumn == 1) {
-				editors[0] = editor.document.uri.path;
-			} else {
-				editors[1] = editor.document.uri.path;
-			}
+			editors.push(editor.document.uri.path);
 		});
-		if (editors.length === 2) {
-			exec(`${path} ${editors[0]} ${editors[1]}`);
+		if (bcompare.path.indexOf("$2") > -1) {
+			exec(`${bin} ${editors[0]} ${editors[1]}`);
+		} else {
+			exec(`${bin} ${vscode.window.activeTextEditor.document.uri.path}`);
 		}
 	});
 

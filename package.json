@@ -25,7 +25,7 @@
 			"properties": {
 				"bcompare.path": {
 					"type": "string",
-					"default": "bcompare",
+					"default": "bcompare $1 $2",
 					"description": "bcompare path"
 				}
 			}
